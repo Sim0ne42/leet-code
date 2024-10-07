@@ -7,10 +7,10 @@ public class SolutionRec {
       return true;
     }
 
-    return isSymmetricRec(root.left, root.right);
+    return areSymmetric(root.left, root.right);
   }
 
-  private boolean isSymmetricRec(TreeNode node1, TreeNode node2) {
+  private boolean areSymmetric(TreeNode node1, TreeNode node2) {
     if (node1 == null && node2 == null) {
       return true;
     }
@@ -19,8 +19,8 @@ public class SolutionRec {
     }
 
     return node1.val == node2.val
-        && isSymmetricRec(node1.right, node2.left)
-        && isSymmetricRec(node1.left, node2.right);
+        && areSymmetric(node1.right, node2.left)
+        && areSymmetric(node1.left, node2.right);
   }
 
 }

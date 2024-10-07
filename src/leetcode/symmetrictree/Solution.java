@@ -8,7 +8,6 @@ public class Solution {
     if (root == null || root.left == null && root.right == null) {
       return true;
     }
-
     if (root.left == null || root.right == null) {
       return false;
     }
