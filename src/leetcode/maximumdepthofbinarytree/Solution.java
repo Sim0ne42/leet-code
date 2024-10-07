@@ -18,12 +18,12 @@ public class Solution {
       return height;
     }
 
-    var queue = new LinkedList<TreeNode>();
+    LinkedList<TreeNode> queue = new LinkedList<>();
     queue.addLast(root);
 
     while (!queue.isEmpty()) {
       for (int i = 0; i < queue.size(); i++) {
-        var node = queue.pop();
+        TreeNode node = queue.pop();
         if (node.left != null) {
           queue.addLast(node.left);
         }
@@ -42,26 +42,28 @@ public class Solution {
       return 0;
     }
 
-    var nodeStack = new LinkedList<TreeNode>();
-    var heightStack = new LinkedList<Integer>();
+    LinkedList<TreeNode> nodeStack = new LinkedList<>();
+    LinkedList<Integer> heightStack = new LinkedList<>();
 
     nodeStack.push(root);
     heightStack.push(1);
 
-    while (!nodeStack.isEmpty()) {
-      var node = nodeStack.pop();
-      var height = heightStack.getFirst();
-      if (node.left != null) {
-        nodeStack.push(node.left);
-        heightStack.push(height + 1);
-      }
+    int maxHeight = 0;
+    while (!nodeStack.isEmpty() && !heightStack.isEmpty()) {
+      TreeNode node = nodeStack.pop();
+      int height = heightStack.pop();
+      maxHeight = Math.max(height, maxHeight);
       if (node.right != null) {
         nodeStack.push(node.right);
         heightStack.push(height + 1);
       }
+      if (node.left != null) {
+        nodeStack.push(node.left);
+        heightStack.push(height + 1);
+      }
     }
 
-    return heightStack.getFirst();
+    return maxHeight;
   }
 
 }
