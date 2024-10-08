@@ -3,19 +3,17 @@ package leetcode.longestpalindrome;
 public class Solution {
 
   public String longestPalindrome(String s) {
-    var maxLength = 0;
-    var longestPalindrome = "";
+    int maxLength = 0;
+    String longestPalindrome = "";
 
-    for (var i = 0; i < s.length() && maxLength < s.length() - i; i++) {
-      var builder = new StringBuilder();
-      for (var j = i; j < s.length(); j++) {
+    for (int i = 0; i < s.length() && maxLength < s.length() - i; i++) {
+      StringBuilder builder = new StringBuilder();
+      for (int j = i; j < s.length(); j++) {
+        int length = j - i + 1;
         builder.append(s.charAt(j));
-        if (isPalindrome(builder)) {
-          var length = builder.length();
-          if (length > maxLength) {
-            maxLength = length;
-            longestPalindrome = builder.toString();
-          }
+        if (maxLength < length && isPalindrome(s, i, j)) {
+          maxLength = length;
+          longestPalindrome = builder.toString();
         }
       }
     }
@@ -23,9 +21,7 @@ public class Solution {
     return longestPalindrome;
   }
 
-  private boolean isPalindrome(StringBuilder s) {
-    var i = 0;
-    var j = s.length() - 1;
+  private boolean isPalindrome(String s, int i, int j) {
     while (i < j) {
       if (s.charAt(i) != s.charAt(j)) {
         return false;
