@@ -1,4 +1,4 @@
-package leetcode.longestpalindrome;
+package leetcode.longestpalindromicsubstring;
 
 public class Main {
 
